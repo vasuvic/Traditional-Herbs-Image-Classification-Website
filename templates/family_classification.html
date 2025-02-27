@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Herb Family - AUIST Traditional Herbs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #1abc9c;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            margin: 50px auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+        .families a:hover {
+            background: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>AUIST Traditional Herbs</h2>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Select a Herb Family</h1>
+        <ul class="families">
+            {% for family in families %}
+                <li><a href="/family/{{ family }}">{{ family }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Select Family</title>
+</head>
+<body>
+    <h1>Select a Herb Family</h1>
+
+    <label for="monocots">Monocots:</label>
+    <select id="monocots" onchange="redirectToClassification(this.value)">
+        <option value="">Select a family</option>
+        {% for family in families["Monocots"] %}
+            <option value="{{ family }}">{{ family }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label for="dicots">Dicots:</label>
+    <select id="dicots" onchange="redirectToClassification(this.value)">
+        <option value="">Select a family</option>
+        {% for family in families["Dicots"] %}
+            <option value="{{ family }}">{{ family }}</option>
+        {% endfor %}
+    </select>
+
+    <script>
+        function redirectToClassification(family) {
+            if (family) {
+                window.location.href = "/family/" + family;
+            }
+        }
+    </script>
+
+</body>
+</html> -->

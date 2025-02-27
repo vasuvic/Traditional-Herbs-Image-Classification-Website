@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUIST Traditional Herbs Image Classification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #1abc9c;
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+        }
+        .feature-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .feature-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .feature-box a {
+            text-decoration: none;
+            color: white;
+            background: #2c3e50;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .contact {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        #home{
+            background-color: #ccd6dd ;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>AUIST Traditional Herbs Image Classification</h2>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section id="home" class="section">
+        <h1>Welcome to AUIST Traditional Herbs Image Classification</h1>
+        <p>Classify and explore traditional herbs with advanced image classification models.</p>
+    </section>
+    
+    <section id="features">
+        <h2>Features</h2>
+        <div class="feature-container">
+            <div class="feature-box">
+                <h3>Donate Images</h3>
+                <p>Contribute to our herb image database by uploading your herb images. <br><br><br></p>
+                <a href="/upload">Upload</a>
+            </div>
+            <div class="feature-box">
+                <h3>Common Herbs Classification</h3>
+                <p>Classify commonly used herbs.<br>Upload an image of a commonly used herb, and our model will identify its species.</p>
+                <a href="/common_classification">Classify</a>
+            </div>
+            <div class="feature-box">
+                <h3>Family Specific Classification</h3>
+                <p>Explore a detailed herb species taxonomy and heirarchy. <br>Classify herbs according to their botanical families for a more in-depth analysis.</p>
+                <a href="/family_classification">Explore</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="section contact">
+        <h2>Contact Us</h2>
+        <p>Email: sskumar2k@gmail.com</p>
+        <p>Phone: +91 9444908978</p>
+    </section>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Herb Classification</title>
+</head>
+<body>
+    <h1>Welcome to Herb Classification</h1>
+    <a href="/upload">Upload an Image</a><br>
+    <a href="/common_classification">Classify Common Herbs</a><br>
+    <a href="/family_classification">Classify Herbs by Family</a>
+</body>
+</html> -->

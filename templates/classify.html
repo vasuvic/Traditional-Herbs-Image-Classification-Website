@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ family }} Classification - AUIST Traditional Herbs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #1abc9c;
+        }
+        .upload-container {
+            background: white;
+            padding: 30px;
+            margin: 50px auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #1abc9c;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .custom-file-upload:hover {
+            background: #1abc9c;
+        }
+        #file-name {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById("preview");
+                output.src = reader.result;
+                output.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        function updateFileName() {
+            var input = document.getElementById("file-upload");
+            var fileName = document.getElementById("file-name");
+            fileName.textContent = input.files.length > 0 ? input.files[0].name : "No file chosen";
+        }
+        function classifyImage(event) {
+            event.preventDefault();
+            var formData = new FormData(document.getElementById("uploadForm"));
+            fetch("{{ url_for('family_model', family=family) }}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = "Prediction: " + data.prediction;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h2>AUIST Traditional Herbs - {{ family }} Classification</h2>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+        </nav>
+    </header>
+    
+    <div class="upload-container">
+        <h1>Classify an Image in {{ family }}</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data" onsubmit="classifyImage(event)">
+            <label for="file-upload" class="custom-file-upload">Choose File</label>
+            <input id="file-upload" type="file" name="image" accept="image/*" required onchange="previewImage(event); updateFileName();">
+            <span id="file-name">No file chosen</span>
+            <br><br>
+            <div class="preview-container">
+                <img id="preview" src="#" alt="Image Preview">
+            </div>
+            <br>
+            <button type="submit">Classify</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>{{ family }} Classification</title>
+    <script>
+        function classifyImage(event) {
+            event.preventDefault();
+            let formData = new FormData(document.getElementById("uploadForm"));
+
+            fetch("/family/{{ family }}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = "Prediction: " + data.prediction;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Classify an Image in {{ family }}</h1>
+    <form id="uploadForm" onsubmit="classifyImage(event)" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Classify</button>
+    </form>
+    <h2 id="result"></h2>
+</body>
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>{{ family }} Classification</title>
+</head>
+<body>
+    <h1>Classify an Image in {{ family }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Classify</button>
+    </form>
+</body>
+</html>  -->
